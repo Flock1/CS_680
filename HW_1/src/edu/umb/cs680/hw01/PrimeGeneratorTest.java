@@ -30,8 +30,7 @@ public class PrimeGeneratorTest {
 	public void TestRange(){
 		int num1 = 100;
 		int num2 = 20;
-		assertTrue(num1 >= 0 && num2 >= 0);
-		assertTrue(num1<num2);
+		assertTrue(num1 >= 0 && num2 >= num1);
 	}
 
 }
