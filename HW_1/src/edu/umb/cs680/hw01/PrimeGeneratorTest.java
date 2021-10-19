@@ -28,9 +28,14 @@ public class PrimeGeneratorTest {
 	}
 	@Test
 	public void TestRange(){
-		int num1 = 100;
-		int num2 = 20;
-		assertTrue(num1 >= 0 && num2 >= num1);
+		int num1 = 10;
+		int num2 = 100;
+		PrimeGenerator pg = new PrimeGenerator(num1, num2);
+		pg.generatePrimes();
+		LinkedList<Long> primes = pg.getPrimes();
+		System.out.print(primes);
+		assertTrue(num1 >= 0 && num2 > num1);
+
 	}
 
 }
