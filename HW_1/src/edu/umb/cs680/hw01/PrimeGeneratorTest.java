@@ -1,0 +1,37 @@
+package edu.umb.cs680.hw01;
+
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.LinkedList;
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
+
+public class PrimeGeneratorTest {
+	@Test
+	public void RegularCase() {
+		PrimeGenerator pg = new PrimeGenerator(1,100);
+		pg.generatePrimes();
+		int expected[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 
+				37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+		LinkedList<Long> primes = pg.getPrimes();
+		Long[] actual = primes.toArray(new Long[primes.size()]);
+		int[] intNumbers = new int[actual.length];
+
+		// Loop through all the result numbers
+		for(int i = 0; i < actual.length; i++)
+		{
+		    // Cast to int and put it to the int array
+		    intNumbers[i] = actual[i].intValue();
+		}
+		//assertTrue(pg instanceof PrimeGenerator);
+		assertArrayEquals(expected, intNumbers);
+		//assertArrayEquals(new int[]{1,2,3},new int[]{1,2,3});
+	}
+	@Test
+	public void TestRange(){
+		int num1 = 100;
+		int num2 = 20;
+		assertTrue(num1 >= 0 && num2 >= 0);
+		assertTrue(num1<num2);
+	}
+
+}
