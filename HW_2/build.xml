@@ -21,7 +21,7 @@
     <pathelement location ="bin"/>
     <pathelement location ="Test/bin"/>
     <path location="junit">
-        <fileset dir="junit" includes="*.jar"></fileset>
+        <fileset dir="${env.JUNIT}" includes="*.jar"></fileset>
     </path>
   </path>
 
