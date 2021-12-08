@@ -1,6 +1,0 @@
-Testcase: edu.umb.cs680.hw02.PrimeGeneratorTest
-Test: TestRange() took 1 milli sec(s)
-Test: RegularCase() took 1 milli sec(s)
-Tests run: 2, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 3 milli sec(s)
-------------- Standard Output ---------------
-[11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]------------- ---------------- ---------------
