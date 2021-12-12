@@ -38,4 +38,5 @@ public class DrawerOpen implements State {
         System.out.println("Drawer is already open");
 
     }
+    public static void main(String[] args){}
 }

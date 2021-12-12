@@ -38,6 +38,7 @@ public class DrawerClosedNotPlaying implements State {
         System.out.println("Drawer is closed and not playing");
         
     }
+    public static void main(String[] args){}
 
 
     }

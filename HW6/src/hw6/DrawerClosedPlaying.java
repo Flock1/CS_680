@@ -1,41 +1,42 @@
 package hw6;
 
+public class DrawerClosedPlaying implements State{
+	
+	private static DrawerClosedPlaying drawerClosedPlaying = null;
+	private DVDPlayer player;
+	
+	public static DrawerClosedPlaying getInstance() {
+		if(drawerClosedPlaying == null) {
+			drawerClosedPlaying = new DrawerClosedPlaying();
+		}
+		//System.out.println("State ---> drawer closed playing");
+		return drawerClosedPlaying;
+	}
+	
+	private DrawerClosedPlaying() {
+		player = player.getInstance();
+	}
 
-public class DrawerClosedPlaying implements State {
+	@Override
+	public void OpenCloseButtonPushed() {
+		// TODO Auto-generated method stub
+		player.stop();
+		player.open();
+		player.changeState(DrawerOpen.getInstance());
+	}
 
-    private static DrawerClosedPlaying draweropen = null;
+	@Override
+	public void playButtonPushed() {
+		// TODO Auto-generated method stub
+		System.out.println("Playing content");
+	}
 
-    public static DrawerClosedPlaying getInstance() {
-        if (draweropen == null) {
-            draweropen = new DrawerClosedPlaying();
-        }
-        return draweropen;
-    }
-
-    private DVDPlayer dvdplayer;
-
-    private DrawerClosedPlaying() {
-        dvdplayer = DVDPlayer.getInstance();
-    }
-
-    @Override
-    public void OpenCloseButtonPushed(){
-
-        dvdplayer.stop();
-        dvdplayer.open();
-        dvdplayer.changeState(DrawerOpen.getInstance());
-    }
-
-    @Override
-    public void playButtonPushed(){
-
-        System.out.println("Playing");
-    }
-
-    @Override
-    public void stopButtonPushed(){
-
-        dvdplayer.stop();
-        dvdplayer.changeState(DrawerClosedNotPlaying.getInstance());
-    }
+	@Override
+	public void stopButtonPushed() {
+		// TODO Auto-generated method stub
+		player.stop();
+		player.changeState(DrawerClosedNotPlaying.getInstance());
+	}
+	public static void main(String[] args){}
+	
 }
