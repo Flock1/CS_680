@@ -28,9 +28,7 @@
   <path id="classpath">
     <pathelement location ="bin"/>
     <pathelement location ="Test/bin"/>
-    <path location="junit">
-        <fileset dir="${env.JUNIT}" includes="*.jar"></fileset>
-    </path>
+    <fileset dir="${env.JUNIT}" includes="*.jar"></fileset>
   </path>
 
     <target name="copy" depends="create">
