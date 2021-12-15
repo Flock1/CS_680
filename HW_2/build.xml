@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="HW_2" default="run" basedir=".">
+<project name="HW_2" default="compile" basedir=".">
   
 	<property environment="env" />
 	
