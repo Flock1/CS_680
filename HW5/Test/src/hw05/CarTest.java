@@ -26,4 +26,12 @@ class CarTest {
         assertEquals(car1.getYear(), car2.getYear());
 
     }
+    @Test
+	public void verifyNotEqualCarWithMakeModelYear() {
+		String[] expected = {"BMW", "M5 competition", 12, 2015, 120000};
+		Car actual = new Car("Audi", "RS5", 13, 2020, 110000);
+		assertNotEquals(expected, carToStringArray(actual));
+	}
+	
+
 }
