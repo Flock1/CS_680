@@ -21,7 +21,7 @@
 		<pathelement location="bin" />
 		<pathelement location="Test/bin" />
         <pathelement location="src/edu/umb/cs680/hw02/" />
-		<fileset dir="junit" includes="*.jar" />	
+		<fileset dir="${env.JUNIT}" includes="*.jar" />	
     </path>
 	<!--<echo message="${toString:classpath}" />-->
 	
