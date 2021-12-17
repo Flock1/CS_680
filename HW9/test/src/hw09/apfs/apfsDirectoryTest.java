@@ -86,7 +86,7 @@ class ApfsDirectoryTest {
 	public void verifyApfsDirectoryEqualityPics() {
 		apfs fileSystemApfs = apfs.getAPFSFileSystem();
 		apfsDirectory root = (apfsDirectory) fileSystemApfs.getRoot();
-		String[] expected = {"true", "pics", "0", localTime.toString(), "home", "1570", "2", "Shreyansh", localTime.toString()};
+		String[] expected = {"true", "pics", "0", localTime.toString(), "home", "1570", "2", "sarvagya", localTime.toString()};
 		apfsDirectory actual = root.findDirectory("pics");
 		assertArrayEquals(expected,dirToStringArray(actual));
 	}
