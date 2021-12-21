@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project name="hw09" basedir="." default="clean">
+
+	<property environment="env"/>
+
+	<echo message= "JUNIT_HOME: ${env.JUNIT}"/>
+	<echo message= "ANT_HOME: ${env.ANT_HOME}"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="test.src" location="test/src/"/>
+	<property name="test.bin" location="test/bin"/>
+	<property name="test.reports" location="test/reports" />
+
+	<path id="classpath">
+		<pathelement location="bin"/>
+		<pathelement location="test/bin"/>
+		<fileset dir="lib/junit" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir= "${bin}"/>
+		<mkdir dir= "${test.bin}"/>
+		<mkdir dir= "${test.reports}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="yes">
+			<classpath refid = "classpath"/>
+			<include name="hw09/apfs/apfsDirectory.java"/>
+			<include name="hw09/apfs/apfsFile.java"/>
+			<include name="hw09/apfs/apfsElement.java"/>
+			<include name="hw09/apfs/apfs.java"/>
+			<include name="hw09/filesystem/FSElement.java"/>
+			<include name="hw09/filesystem/FileSystem.java"/>
+			<include name="hw09/apfs/apfsLink.java"/>
+		</javac>
+		<javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name="hw09/apfs/apfsDirectoryTest.java"/>
+			<include name="hw09/apfs/apfsFileTest.java"/>
+			<include name="hw09/apfs/apfsTest.java"/>
+			<include name="hw09/filesystem/FileSystemTest.java"/>
+			<include name="hw09/apfs/apfsLinkTest.java"/>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<junitlauncher printSummary="true">
+			<classpath refid="classpath" />
+			<testclasses outputdir="${test.reports}">
+				<fileset dir="${test.bin}">
+					<include name="hw09/apfs/apfsTest.class"/>
+	                <include name="hw09/apfs/apfsDirectoryTest.class"/>
+					<include name="hw09/apfs/apfsFileTest.class"/>
+					<include name="hw09/filesystem/FileSystemTest.class"/>
+					<include name="hw09/apfs/apfsLinkTest.class"/>
+	            </fileset>
+	            <listener type="legacy-plain" sendSysOut="true" />
+	         </testclasses>
+	      </junitlauncher>
+	   </target>
+	   
+	   <target name="clean" depends="run">
+	      <delete includeemptydirs="true">
+	         <fileset dir="${bin}/hw09/apfs" includes="**/*" />
+	         <fileset dir="${bin}/hw09/filesystem" includes="**/*" />
+	         <fileset dir="${test.bin}/hw09/apfs" includes="**/*" />
+	         <fileset dir="${test.bin}/hw09/filesystem" includes="**/*" />
+	      </delete>
+	   </target>
+	</project>
+
