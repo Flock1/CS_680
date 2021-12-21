@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<project name="hw10" basedir="." default="clean">
+
+	<property environment="env"/>
+
+	<echo message= "JUNIT_HOME: ${env.JUNIT}"/>
+	<echo message= "ANT_HOME: ${env.ANT_HOME}"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="test.src" location="test/src/"/>
+	<property name="test.bin" location="test/bin"/>
+	<property name="test.reports" location="test/reports" />
+
+	<path id="classpath">
+		<pathelement location="bin"/>
+		<pathelement location="test/bin"/>
+		<fileset dir="${env.JUNIT}" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir= "${bin}"/>
+		<mkdir dir= "${test.bin}"/>
+		<mkdir dir= "${test.reports}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="yes">
+			<classpath refid = "classpath"/>
+			<include name="hw10/apfs/apfsDirectory.java"/>
+			<include name="hw10/apfs/apfsFile.java"/>
+			<include name="hw10/apfs/apfsElement.java"/>
+			<include name="hw10/apfs/apfs.java"/>
+			<include name="hw10/filesystem/FSElement.java"/>
+			<include name="hw10/filesystem/FileSystem.java"/>
+			<include name="hw10/apfs/apfsvisitor.java"/>
+			<include name="hw10/apfs/apfsCountingVisitor.java"/>
+			<include name="hw10/apfs/apfsFileCrawlingVisitor.java"/>
+			<include name="hw10/apfs/apfsFileSearchVisitor.java"/>
+			<include name="hw10/apfs/apfsLink.java"/>
+		</javac>
+		<javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name="hw10/apfs/apfsDirectoryTest.java"/>
+			<include name="hw10/apfs/apfsFileTest.java"/>
+			<include name="hw10/apfs/apfsTest.java"/>
+			<include name="hw10/filesystem/FileSystemTest.java"/>
+			<include name="hw10/apfs/apfsLinkTest.java"/>
+			<include name="hw10/apfs/apfsCountingVisitorTest.java"/>
+			<include name="hw10/apfs/apfsFileCrawlingVisitorTest.java"/>
+			<include name="hw10/apfs/apfsFileSearchVisitorTest.java"/>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<junitlauncher printSummary="true">
+			<classpath refid="classpath" />
+			<testclasses outputdir="${test.reports}">
+				<fileset dir="${test.bin}">
+				<include name="hw10/apfs/apfsDirectoryTest.class"/>
+				<include name="hw10/apfs/apfsFileTest.class"/>
+				<include name="hw10/apfs/apfsTest.class"/>
+				<include name="hw10/filesystem/FileSystemTest.class"/>
+				<include name="hw10/apfs/apfsLinkTest.class"/>
+				<include name="hw10/apfs/apfsCountingVisitorTest.class"/>
+				<include name="hw10/apfs/apfsFileCrawlingVisitorTest.class"/>
+				<include name="hw10/apfs/apfsFileSearchVisitorTest.class"/>
+	            </fileset>
+	            <listener type="legacy-plain" sendSysOut="true" />
+	         </testclasses>
+	      </junitlauncher>
+	   </target>
+	   
+	   <target name="clean" depends="run">
+	      <delete includeemptydirs="true">
+	         <fileset dir="${bin}/hw10/apfs" includes="**/*" />
+	         <fileset dir="${bin}/hw10/filesystem" includes="**/*" />
+	         <fileset dir="${test.bin}/hw10/apfs" includes="**/*" />
+	         <fileset dir="${test.bin}/hw10/filesystem" includes="**/*" />
+	      </delete>
+	   </target>
+	</project>
+
