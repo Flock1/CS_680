@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hw14" basedir="." default="clean">
+	<property environment="env"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="test.src" location="test/src"/>
+	<property name="test.bin" location="test/bin"/>
+	<property name="test.reports" location="test/reports"/>
+
+	<path id="classpath">
+		<pathelement location="bin"/>
+		<pathelement location="test/bin"/>
+		<fileset dir="lib/junit" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${test.bin}"/>
+		<mkdir dir="${test.reports}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name ="hw13/Car.java"/>
+		</javac>
+		<javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name ="hw13/MileageComparatorTest.java"/>
+            <include name ="hw13/MileageComparatorReverseTest.java"/>
+			<include name ="hw13/ParetoComparatorTest.java"/>
+			<include name ="hw13/PriceComparatorTest.java"/>
+			<include name ="hw13/YearComparatorTest.java"/>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<junitlauncher printSummary="true">
+			<classpath refid = "classpath"/>
+			<testclasses outputdir="${test.reports}">
+				<fileset dir="${test.bin}">
+					<include name ="hw13/MileageComparatorTest.class"/>
+                    <include name ="hw13/MileageComparatorReverseTest.class"/>
+					<include name ="hw13/ParetoComparatorTest.class"/>
+					<include name ="hw13/PriceComparatorTest.class"/>
+					<include name ="hw13/YearComparatorTest.class"/>
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+
+	<target name="clean" depends="run">
+	      <delete includeemptydirs="true">
+	         <fileset dir="${bin}/hw13" includes="**/*" />
+	         <fileset dir="${test.bin}/hw13" includes="**/*" />
+	      </delete>
+	   </target>
+	</project>
