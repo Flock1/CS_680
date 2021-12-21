@@ -1,0 +1,5 @@
+Testcase: hw11.UsedCarComparatorTest
+Test: YearComparator() took 15 milli sec(s)
+Test: MileageComparator() took 1 milli sec(s)
+Test: PriceComparator() took 1 milli sec(s)
+Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 27 milli sec(s)
