@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hw12" basedir="." default="clean">
+	<property environment="env"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="test.src" location="test/src"/>
+	<property name="test.bin" location="test/bin"/>
+	<property name="test.reports" location="test/reports"/>
+
+	<path id="classpath">
+		<pathelement location="bin"/>
+		<pathelement location="test/bin"/>
+		<fileset dir="lib/junit" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+	</path>
+
+	<target name="init">
+		<mkdir dir ="${bin}"/>
+		<mkdir dir ="${test.bin}"/>
+		<mkdir dir = "${test.reports}"/>
+	</target>
+
+	<target name="compile" depends ="init">
+		<javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name ="hw12/apfs/apfs.java"/>
+			<include name ="hw12/apfs/apfsDirectory.java"/>
+			<include name ="hw12/apfs/apfsElement.java"/>
+			<include name ="hw12/apfs/apfsFile.java"/>
+			<include name ="hw12/apfs/apfsLink.java"/>
+			<include name ="hw12/apfs/AlphabeticalComparator.java"/>
+			<include name ="hw12/apfs/ReverseAlphabeticalComparator.java"/>
+			<include name ="hw12/apfs/TimeStampComparator.java"/>
+			<include name ="hw12/filesystem/FileSystem.java"/>
+			<include name ="hw12/filesystem/FSElement.java"/>
+		</javac>
+		<javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
+			<classpath refid = "classpath"/>
+			<include name ="hw12/AlphabeticalComparatorTest.java"/>
+			<include name ="hw12/ReverseAlphabeticalComparatorTest.java"/>
+			<include name ="hw12/TimeStampComparatorTest.java"/>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<junitlauncher printSummary="true">
+			<classpath refid = "classpath"/>
+			<testclasses outputdir="${test.reports}">
+				<fileset dir="${test.bin}">
+					<include name ="hw12/apfs/AlphabeticalComparatorTest.class"/>
+					<include name ="hw12/apfs/ReverseAlphabeticalComparatorTest.class"/>
+					<include name ="hw12/apfs/TimeStampComparatorTest.class"/>
+				</fileset>
+				<listener type="legacy-plain" sendSysOut="true" />
+			</testclasses>
+		</junitlauncher>
+	</target>
+
+	<target name="clean" depends="run">
+	      <delete includeemptydirs="true">
+	         <fileset dir="${bin}/hw12/apfs" includes="**/*" />
+	         <fileset dir="${bin}/hw12/filesystem" includes="**/*" />
+	         <fileset dir="${test.bin}/hw12/apfs" includes="**/*" />
+	      </delete>
+	   </target>
+	</project>
