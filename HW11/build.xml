@@ -14,7 +14,7 @@
 	<path id="classpath">
 		<pathelement location="bin"/>
 		<pathelement location="test/bin"/>
-		<fileset dir="lib/junit" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+		<fileset dir="${env.JUNIT}" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
 	</path>
 
 	<target name="init">
