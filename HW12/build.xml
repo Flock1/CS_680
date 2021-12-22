@@ -2,6 +2,9 @@
 <project name="hw12" basedir="." default="clean">
 	<property environment="env"/>
 
+	<echo message="JUNIT_HOME: ${env.JUNIT}"/>
+	<echo message="ANT_HOME: ${env.ANT_HOME}"/>
+	
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
 	<property name="test.src" location="test/src"/>
@@ -11,7 +14,7 @@
 	<path id="classpath">
 		<pathelement location="bin"/>
 		<pathelement location="test/bin"/>
-		<fileset dir="lib/junit" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
+		<fileset dir="${env.JUNIT}" includes="*.jar" excludes="org.junit.vintage.*.jar"/>
 	</path>
 
 	<target name="init">
