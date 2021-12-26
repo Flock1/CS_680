@@ -1,0 +1,6 @@
+Testcase: hw14.apfs.TimeStampComparatorTest
+Test: FilesInCodeTimeComparatorTest() took 1 milli sec(s)
+Tests run: 1, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 2 milli sec(s)
+------------- Standard Output ---------------
+[hw14.apfs.apfsFile@31ff1390, hw14.apfs.apfsFile@759d81f3]
+------------- ---------------- ---------------

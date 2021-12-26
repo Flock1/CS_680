@@ -1,0 +1,8 @@
+Testcase: hw14.apfs.AlphabeticalComparatorTest
+Test: FileInHomeDirectoryComparatorTest() took 10 milli sec(s)
+Test: ChildrenHomeDiretoryComparatorTest() took 0 milli sec(s)
+Tests run: 2, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 24 milli sec(s)
+------------- Standard Output ---------------
+[hw14.apfs.apfsFile@deb3b60]
+[hw14.apfs.apfsFile@deb3b60, hw14.apfs.apfsDirectory@601cbd8c, hw14.apfs.apfsDirectory@7180e701, hw14.apfs.apfsLink@4e2c95ee]
+------------- ---------------- ---------------
